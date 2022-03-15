@@ -1,5 +1,7 @@
 <?php
+
 require __DIR__ . '/part2.php';
+
 try{
     $start = intval($_POST['start']);
     $end = intval($_POST['end']);
@@ -13,5 +15,5 @@ if ($end < $start){
 
 for($i=$start; $i < $end; $i++){
     $date = easter($i);
-    echo date('\E\a\s\t\e\r \i\n Y, F j', $date) . "<br/>";
+    echo date('\E\a\s\t\e\r \i\n Y, F j', $date) . "\n";
 }
