@@ -24,7 +24,12 @@ class db
         $results = $this->myconn->query($sql);
         if ($results->num_rows > 0) {
             while ($record = $results->fetch_assoc()) {
-                echo "Id is <b>" . $record["id"] . "</b>, title is <b>" . $record['title'] . "</b>,  center is <b>" . $record['center'] . "</b>, population is <b>" . $record['population'] . "</b>, area is <b>" . $record['area'] . "</b><br>";
+                echo "Id is <b>" . $record["id"] .
+                    "</b>, title is <b>" . $record['title'] .
+                    "</b>,  center is <b>" . $record['center'] .
+                    "</b>, population is <b>" . $record['population'] .
+                    "</b>, area is <b>" . $record['area'] .
+                    "</b><br>";
             }
         }
         echo "<br>";
@@ -38,13 +43,13 @@ class db
         }else{
             $sql = "INSERT INTO AdministrativeUnits (id, title, center, population, area) VALUES ('{$id}', '{$title}', '{$center}', '{$population}', '{$area}');";
         }
-        return $this->myconn->query($sql);
+        $this->myconn->query($sql);
     }
 
     public function deleteRecord($id)
     {
         $sql = "DELETE FROM AdministrativeUnits WHERE id={$id};";
-        return $this->myconn->query($sql);
+        $this->myconn->query($sql);
 
     }
 
@@ -75,7 +80,6 @@ class db
                 $sql = $sql.",";
             }
             $sql = $sql . " area='".$area."'";
-            $wasAdded = true;
         }
         $sql = $sql . " WHERE id='".$id."';";
         $this->myconn->query($sql);
@@ -86,8 +90,8 @@ class db
 // Here is how to use our object
 $mydb = new db();
 $mydb->printAllRecords();
-echo $mydb->addNewRecord( "Krzysztof", "Kieslowski", 0,0,7);
-echo $mydb->addNewRecord( "Krzysztof", "Kieslowski", 0,0,6);
+$mydb->addNewRecord( "Krzysztof", "Kieslowski", 0,0,7);
+$mydb->addNewRecord( "Krzysztof", "Kieslowski", 0,0,6);
 $mydb->printAllRecords();
 $mydb->deleteRecord(6);
 $mydb->updateRecord(7, "Valentina", "Tereshkova");
