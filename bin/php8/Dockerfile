@@ -91,5 +91,7 @@ libpng-dev && \
 # Enable apache modules
 RUN a2enmod rewrite headers
 
+RUN chown -R 5678 /var/www/html
+
 # Cleanup
 RUN rm -rf /usr/src/*
